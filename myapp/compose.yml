@@ -1,34 +1,27 @@
 version: "3.8"
 
 services:
-  # myapp:
-  #   build: .
-  #   image: "myapp"
-  #   ports:
-  #     - 80:80
-  #   # environment:
-  #   #   - APACHE_DOCUMENT_ROOT=/var/www/html
-  #   networks:
-  #     - myapp-net
-  #   depends_on:
-  #     - myapp_db
-  myapp:
-    image: php:8.1-apache
-    ports:
-      - "80:80"
-    volumes:
-      - ./myapp:/var/www/html
-    environment:
-      - APACHE_DOCUMENT_ROOT=/var/www/html
+    myapp:
+     build: .
+     image: "myapp"
+     ports:
+       - 80:80
+     networks:
+       - myapp-net
+     depends_on:
+       - myapp_db
   
-  myapp_db:
-    image: mysql:8.0
-    environment:
+    myapp_db:
+     image: mysql:8.0
+     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: myapp_db
-    volumes:
+     volumes:
       - db_data:/var/lib/mysql
-      # - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+     networks:
+       - myapp-net
+       
 networks:
   myapp-net:
     driver: bridge
