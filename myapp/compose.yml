@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  myapp:
+    build: .
+    image: "myapp"
+    ports:
+      - 80:80
+    networks:
+      - myapp-net
+    depends_on:
+      - myapp_db
+  
+  myapp_db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: myapp_db
+      # MYSQL_USER: myapp_user
+      MYSQL_PASSWORD: myapp_password
+    volumes:
+      - db_data:/var/lib/mysql
+      - $(pwd)/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+networks:
+  myapp-net:
+    driver: bridge
+
+volumes:
+  db_data:

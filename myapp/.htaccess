@@ -1,0 +1,23 @@
+# Enable rewrite engine
+RewriteEngine On
+
+# Security headers
+Header set X-Content-Type-Options nosniff
+Header set X-Frame-Options DENY
+Header set X-XSS-Protection "1; mode=block"
+
+# Redirect to index.php for clean URLs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Protect sensitive files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(sql|log|ini)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
