@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Message App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-door-open"></i> Welcome Message Manager</h1>
+            <p class="subtitle">Update and display your welcome message dynamically</p>
+        </header>
+
+        <main>
+            <div class="card welcome-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-bullhorn"></i> Current Welcome Message</h2>
+                </div>
+                <div class="card-body">
+                    <div class="message-display" id="welcomeMessage">
+                        Loading...
+                    </div>
+                    <div class="message-info">
+                        <p><i class="fas fa-database"></i> Stored in MySQL Database</p>
+                        <p><i class="fas fa-clock"></i> Updated in real-time</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card update-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-edit"></i> Update Message</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="newMessage"><i class="fas fa-comment-alt"></i> Enter New Welcome Message:</label>
+                        <textarea 
+                            id="newMessage" 
+                            placeholder="Type your welcome message here..." 
+                            rows="3"
+                        ></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button id="updateBtn" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Update Message
+                        </button>
+                        <button id="resetBtn" class="btn btn-secondary">
+                            <i class="fas fa-undo"></i> Reset to Default
+                        </button>
+                    </div>
+                    <div class="alert" id="alertMessage"></div>
+                </div>
+            </div>
+
+            <div class="card history-card" id="historySection">
+                <div class="card-header">
+                    <h2><i class="fas fa-history"></i> Message History</h2>
+                    <button id="toggleHistory" class="btn-icon">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="card-body" id="historyBody" style="display: none;">
+                    <div class="history-list" id="historyList">
+                        Loading history...
+                    </div>
+                </div>
+            </div>
+
+            <div class="card info-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-info-circle"></i> Application Info</h2>
+                </div>
+                <div class="card-body">
+                    <div class="tech-stack">
+                        <div class="tech-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-node-js"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-database"></i>
+                            <span>MySQL</span>
+                        </div>
+                    </div>
+                    <p>Full-stack application with real-time database integration</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Welcome Message App &copy; 2024 | Built with Node.js & MySQL</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
