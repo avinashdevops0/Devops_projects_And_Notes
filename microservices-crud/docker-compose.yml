@@ -10,18 +10,29 @@ services:
     depends_on:
       - frontend
       - gateway
+    networks:
+      - net
 
   frontend:
     build: ./frontend
+    networks:
+      - net
 
   gateway:
     build: ./gateway
+    networks:
+      - net
     depends_on:
       - users-service
       - products-service
+    
 
   users-service:
     build: ./users-service
+    networks:
+      - net
 
   products-service:
     build: ./products-service
+    networks:
+      - net
