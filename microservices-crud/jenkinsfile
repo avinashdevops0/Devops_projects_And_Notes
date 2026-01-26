@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage("Clean ws") {
+            steps {
+                cleanWs()
+            }
+        }
+
+        stage("Checkout Code") {
+            steps {
+                git branch: 'main', url: 'https://github.com/avinashdevops0/Devops_projects_And_Notes.git'
+            }
+        }
+        stage ("Build & run") {
+            steps {
+                dir("microservices-crud") {
+                    sh "docker-compose build && docker-compose up -d"
+                }
+            }
+        }
+    }
+}
