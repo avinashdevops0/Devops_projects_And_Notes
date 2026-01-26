@@ -10,6 +10,13 @@ let users = [
   { id: '2', name: 'Bob' }
 ];
 
+let users = [
+  { id: '1', name: 'Alice Johnson', email: 'alice@example.com', role: 'Admin', createdAt: '2023-01-15' },
+  { id: '2', name: 'Bob Smith', email: 'bob@example.com', role: 'User', createdAt: '2023-02-20' },
+  { id: '3', name: 'Charlie Brown', email: 'charlie@example.com', role: 'User', createdAt: '2023-03-10' },
+  { id: '4', name: 'Diana Prince', email: 'diana@example.com', role: 'Editor', createdAt: '2023-04-05' }
+];
+
 // Create
 app.post('/users', (req, res) => {
   const user = { id: uuidv4(), ...req.body };
@@ -42,3 +49,5 @@ app.delete('/users/:id', (req, res) => {
 });
 
 app.listen(3001, () => console.log('Users service running on port 3001'));
+
+// ============================================================================================================
