@@ -1,157 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Microservices CRUD</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f4f6f8;
-      color: #333;
-    }
-
-    h1 {
-      color: #2c3e50;
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .card {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 20px;
-      width: 400px;
-      min-height: 300px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .card h2 {
-      margin-top: 0;
-      color: #34495e;
-    }
-
-    button {
-      background-color: #3498db;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
-      align-self: flex-start;
-    }
-
-    button:hover {
-      background-color: #2980b9;
-    }
-
-    pre {
-      background-color: #ecf0f1;
-      padding: 15px;
-      border-radius: 5px;
-      overflow-x: auto;
-      flex-grow: 1;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }
-
-    .spinner {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #3498db;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      margin: 20px auto;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .error {
-      color: red;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    @media (max-width: 850px) {
-      .container {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
+  <title>Microservices CRUD Dashboard</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Users & Products CRUD</h1>
+<h1>Microservices CRUD Dashboard</h1>
 
 <div class="container">
+  <!-- Users Section -->
   <div class="card">
     <h2>Users</h2>
     <button onclick="getUsers()">Load Users</button>
-    <div id="users">
-      <div class="spinner" style="display:none;"></div>
-    </div>
+    <div id="users"><div class="spinner" style="display:none;"></div></div>
     <div id="users-error" class="error"></div>
   </div>
 
+  <!-- Products Section -->
   <div class="card">
     <h2>Products</h2>
     <button onclick="getProducts()">Load Products</button>
-    <div id="products">
-      <div class="spinner" style="display:none;"></div>
-    </div>
+    <div id="products"><div class="spinner" style="display:none;"></div></div>
     <div id="products-error" class="error"></div>
+  </div>
+
+  <!-- Orders Section -->
+  <div class="card">
+    <h2>Orders</h2>
+    <button onclick="getOrders()">Load Orders</button>
+    <div id="orders"><div class="spinner" style="display:none;"></div></div>
+    <div id="orders-error" class="error"></div>
   </div>
 </div>
 
-<script>
-const apiBase = '/api/v1';
-
-async function getUsers() {
-  const usersDiv = document.getElementById('users');
-  const errorDiv = document.getElementById('users-error');
-  usersDiv.innerHTML = '<div class="spinner"></div>';
-  errorDiv.textContent = '';
-  try {
-    const res = await fetch(`${apiBase}/users`);
-    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
-    const data = await res.json();
-    usersDiv.textContent = JSON.stringify(data, null, 2);
-  } catch (err) {
-    usersDiv.innerHTML = '';
-    errorDiv.textContent = 'Failed to load users: ' + err.message;
-  }
-}
-
-async function getProducts() {
-  const productsDiv = document.getElementById('products');
-  const errorDiv = document.getElementById('products-error');
-  productsDiv.innerHTML = '<div class="spinner"></div>';
-  errorDiv.textContent = '';
-  try {
-    const res = await fetch(`${apiBase}/products`);
-    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
-    const data = await res.json();
-    productsDiv.textContent = JSON.stringify(data, null, 2);
-  } catch (err) {
-    productsDiv.innerHTML = '';
-    errorDiv.textContent = 'Failed to load products: ' + err.message;
-  }
-}
-</script>
+<script src="app.js"></script>
 </body>
 </html>
