@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Microservices CRUD</title>
+</head>
+<body>
+<h1>Users & Products CRUD</h1>
+
+<h2>Users</h2>
+<button onclick="getUsers()">Load Users</button>
+<pre id="users"></pre>
+
+<h2>Products</h2>
+<button onclick="getProducts()">Load Products</button>
+<pre id="products"></pre>
+
+<script>
+const apiBase = '/api/v1';
+
+async function getUsers() {
+  const res = await fetch(`${apiBase}/users`);
+  document.getElementById('users').textContent = JSON.stringify(await res.json(), null, 2);
+}
+
+async function getProducts() {
+  const res = await fetch(`${apiBase}/products`);
+  document.getElementById('products').textContent = JSON.stringify(await res.json(), null, 2);
+}
+</script>
+</body>
+</html>
