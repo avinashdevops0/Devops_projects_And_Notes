@@ -1,10 +1,8 @@
-version: "3.9"
-
 services:
   nginx:
     image: nginx:alpine
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.d
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
       - "80:80"
     depends_on:
@@ -25,7 +23,6 @@ services:
     depends_on:
       - users-service
       - products-service
-    
 
   users-service:
     build: ./users-service
@@ -36,3 +33,7 @@ services:
     build: ./products-service
     networks:
       - net
+
+networks:
+  net:
+    driver: bridge
