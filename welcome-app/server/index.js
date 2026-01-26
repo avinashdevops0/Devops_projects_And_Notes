@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 // Database connection pool
 const pool = mysql.createPool({
-    host: 'database-1.cmdigqa4cp2m.us-east-1.rds.amazonaws.com',
+    host: 'mysql',
     user: 'root', // Change this to your MySQL username
     password: 'rootpassword', // Change this to your MySQL password
     database: 'welcome_app',

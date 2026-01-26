@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: avinashg0/welcome-db
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: welcome_db
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - welcome-net
+
+  backend:
+    image: avinashg0/welcome-be
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 1
+        delay: 10s
+    networks:
+      - welcome-net
+
+  frontend:
+    image: avinashg0/welcome-fe
+    ports:
+      - "80:80"
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 1
+        delay: 10s
+    networks:
+      - welcome-net
+
+volumes:
+  mysql_data:
+
+networks:
+  welcome-net:
+    driver: overlay

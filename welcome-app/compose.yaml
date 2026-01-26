@@ -5,12 +5,14 @@ services:
     build: ./database
     image: avinashg0/welcome-db
     restart: unless-stopped
+    # environment:
+      # MYSQL_ROOT_PASSWORD: rootpassword
+      # MYSQL_DATABASE: welcome_db
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 30s
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
@@ -21,7 +23,8 @@ services:
     image: avinashg0/welcome-be
     restart: unless-stopped
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     networks:
       - welcome-net
 
