@@ -5,11 +5,15 @@ const { v4: uuidv4 } = require('uuid');
 const app = express();
 app.use(bodyParser.json());
 
-let users = [
-  { id: '1', name: 'Alice Johnson', email: 'alice@example.com', role: 'Admin', createdAt: '2023-01-15' },
-  { id: '2', name: 'Bob Smith', email: 'bob@example.com', role: 'User', createdAt: '2023-02-20' },
-  { id: '3', name: 'Charlie Brown', email: 'charlie@example.com', role: 'User', createdAt: '2023-03-10' },
-  { id: '4', name: 'Diana Prince', email: 'diana@example.com', role: 'Editor', createdAt: '2023-04-05' }
+// let users = [
+//   { id: '1', name: 'Alice Johnson', email: 'alice@example.com', role: 'Admin', createdAt: '2023-01-15' },
+//   { id: '2', name: 'Bob Smith', email: 'bob@example.com', role: 'User', createdAt: '2023-02-20' },
+//   { id: '3', name: 'Charlie Brown', email: 'charlie@example.com', role: 'User', createdAt: '2023-03-10' },
+//   { id: '4', name: 'Diana Prince', email: 'diana@example.com', role: 'Editor', createdAt: '2023-04-05' }
+// ];
+let products = [
+  { id: '1', name: 'DevOps' },
+  { id: '2', name: 'AWS' }
 ];
 
 // Create
