@@ -1,74 +1,116 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background-color: #f4f6f8;
-  color: #333;
+/* Reset some defaults */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #eef2f7;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Main heading */
 h1 {
   text-align: center;
   color: #2c3e50;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  font-size: 2.5em;
+  background: linear-gradient(90deg, #3498db, #9b59b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+/* Container for cards */
 .container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 25px;
   justify-content: center;
+  padding-bottom: 50px;
 }
 
+/* Cards */
 .card {
   background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  padding: 20px;
-  width: 350px;
-  min-height: 300px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 25px;
+  width: 360px;
+  min-height: 320px;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Section headings inside cards */
 .card h2 {
-  margin-top: 0;
-  color: #34495e;
+  margin-bottom: 15px;
+  font-size: 1.6em;
+  position: relative;
+  padding-bottom: 5px;
 }
 
+.card h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 3px;
+  background: #3498db;
+  border-radius: 3px;
+}
+
+/* Buttons */
 button {
-  background-color: #3498db;
+  background: linear-gradient(45deg, #3498db, #9b59b6);
   color: white;
   border: none;
-  padding: 10px 20px;
-  margin-bottom: 10px;
-  border-radius: 5px;
+  padding: 12px 25px;
+  margin-bottom: 15px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
   align-self: flex-start;
 }
 
 button:hover {
-  background-color: #2980b9;
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
+/* JSON pre blocks */
 pre {
-  background-color: #ecf0f1;
+  background-color: #f7f9fc;
   padding: 15px;
-  border-radius: 5px;
+  border-radius: 10px;
   overflow-x: auto;
   flex-grow: 1;
   white-space: pre-wrap;
   word-wrap: break-word;
+  font-size: 14px;
+  border-left: 5px solid #3498db;
 }
 
+/* Spinner animation */
 .spinner {
   border: 4px solid #f3f3f3;
   border-top: 4px solid #3498db;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   animation: spin 1s linear infinite;
-  margin: 20px auto;
+  margin: 25px auto;
 }
 
 @keyframes spin {
@@ -76,13 +118,15 @@ pre {
   100% { transform: rotate(360deg); }
 }
 
+/* Error messages */
 .error {
-  color: red;
+  color: #e74c3c;
   font-weight: bold;
   margin-top: 10px;
 }
 
-@media (max-width: 1100px) {
+/* Responsive */
+@media (max-width: 1150px) {
   .container {
     flex-direction: column;
     align-items: center;
