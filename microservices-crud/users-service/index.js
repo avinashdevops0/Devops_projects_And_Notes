@@ -6,11 +6,6 @@ const app = express();
 app.use(bodyParser.json());
 
 let users = [
-  { id: '1', name: 'Alice' },
-  { id: '2', name: 'Bob' }
-];
-
-let users = [
   { id: '1', name: 'Alice Johnson', email: 'alice@example.com', role: 'Admin', createdAt: '2023-01-15' },
   { id: '2', name: 'Bob Smith', email: 'bob@example.com', role: 'User', createdAt: '2023-02-20' },
   { id: '3', name: 'Charlie Brown', email: 'charlie@example.com', role: 'User', createdAt: '2023-03-10' },
@@ -49,5 +44,3 @@ app.delete('/users/:id', (req, res) => {
 });
 
 app.listen(3001, () => console.log('Users service running on port 3001'));
-
-// ============================================================================================================
